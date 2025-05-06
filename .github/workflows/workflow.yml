@@ -9,6 +9,7 @@ jobs:
       - name: Print goodbye
         run: echo "Done - bye!"
   second-job:
+    needs: first-job
     runs-on: Linux
     steps:
       - name: Print Multi-line greeting
