@@ -1,18 +1,30 @@
-name: My First Workflow
-on: workflow_dispatch
+name: Test Self Hosted Runner
+
+on:
+  workflow_dispatch:
+
 jobs:
-  first-job:
-    runs-on: ubuntu-latest
+  test-runner:
+    runs-on: c3
+
     steps:
-      - name: Print greeting
-        run: echo "Hello World!"
-      - name: Print goodbye
-        run: echo "Done - bye!"
-  second-job:
-    needs: first-job
-    runs-on: Linux
-    steps:
-      - name: Print Multi-line greeting
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Print system info
         run: |
-          echo "Hello World!"
-          echo "Done - bye!"
+          echo "Runner name: $RUNNER_NAME"
+          echo "Operating System:"
+          uname -a
+          echo "Current directory:"
+          pwd
+
+      - name: List files
+        run: |
+          ls -la
+
+      - name: Test environment variables
+        run: |
+          echo "Repository: $GITHUB_REPOSITORY"
+          echo "Branch: $GITHUB_REF"
+          echo "Workflow: $GITHUB_WORKFLOW"
