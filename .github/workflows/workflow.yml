@@ -5,7 +5,7 @@ on:
 
 jobs:
   test-runner:
-    runs-on: c3
+    runs-on: oci
 
     steps:
       - name: Checkout repository
