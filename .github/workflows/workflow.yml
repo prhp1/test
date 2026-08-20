@@ -29,5 +29,9 @@ jobs:
           echo "Branch: $GITHUB_REF"
           echo "Workflow: $GITHUB_WORKFLOW"
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
+      - name: Get or create OCIR repository
+        id: ocir-repo
+        uses: oracle-actions/get-ocir-repository@v1.3.0
+        with:
+          name: 'hpocir002'
+          compartment: 'ocid1.compartment.oc1..aaaaaaaavyuge73qiiyjhlzgivace6cmlhhml2ublff2rhkmdrakrkarfzma'
